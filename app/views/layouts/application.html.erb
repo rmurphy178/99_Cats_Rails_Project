@@ -5,6 +5,14 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+<% if logged_in?  %>
+  Username:<%= self.user_name %>
+  <%= button_to "logout", session_url, method: :delete %>
+<% else %>
+  <%= link_to "login",  new_session_url%>
+  <%= link_to "create",  new_user_url%>
+<%end %>
+
 </head>
 <body>
 

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_logged_out
+  
   def new
     render :new
   end
@@ -11,5 +13,9 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:user_name,:password)
   end
 end

@@ -1,4 +1,7 @@
 class CatsController < ApplicationController
+  before_action :require_logged_in, only:[:new, :create, :edit, :update, :destroy]
+
+
   def index
     @cats = Cat.all
     render :index
@@ -42,7 +45,6 @@ class CatsController < ApplicationController
   private
 
   def cat_params
-    params.require(:cat)
-      .permit(:age, :birth_date, :color, :description, :name, :sex)
+    params.require(:cat).permit(:age, :birth_date, :color, :description, :name, :sex)
   end
 end
